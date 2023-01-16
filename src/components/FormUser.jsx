@@ -65,7 +65,7 @@ const FormUser =({createUserData, userSelectedData, updateUser}) =>{
         <div>
             <form onSubmit={handleSubmit( getFormData)}>
                 <div className="input-wrapper">
-                    <label htmlFor="user-firstname">Nombre</label>
+                    <label htmlFor="user-firstname">Nombre</label><br />
                     <input 
                     type="text"
                     id="user-firstname"
@@ -75,7 +75,7 @@ const FormUser =({createUserData, userSelectedData, updateUser}) =>{
                     {  errors.name?.type === "required" && <span>Este input es Requerido</span> }
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="user-lastname">Apellido  </label>
+                    <label htmlFor="user-lastname">Categoria</label><br />
                     <input 
                     type="text"
                     id="user-lastname"
@@ -83,7 +83,7 @@ const FormUser =({createUserData, userSelectedData, updateUser}) =>{
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="user-email">Email</label>
+                    <label htmlFor="user-email">Precio</label><br />
                     <input 
                     type="email"
                     id="user-email"
@@ -91,23 +91,14 @@ const FormUser =({createUserData, userSelectedData, updateUser}) =>{
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="user-password">Contraseña</label>
+                    <label htmlFor="user-password">Disponible</label><br />
                     <input 
                     type="password"
                     id="user-password"
                     { ...register("password", { required: true})}
                     />
                 </div>
-                <div className="input-wrapper">
-                    <label htmlFor="user-birthday">Fecha</label>
-                    <input 
-                    type="date"
-                    id="user-birthday"
-                    { ...register("birthday", { required: true})}
-                    />
-                </div>
-            
-                <button type='submit'>Enviar</button>
+            <button type='submit'>Crear</button>
             </form>
         </div>
     )

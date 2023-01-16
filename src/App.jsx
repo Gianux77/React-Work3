@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import FormUser from './components/FormUser'
-import usersData from './data/userData'
-import UserList from './components/UsersList'
 import axios from 'axios'
+import UserList from './components/UsersList'
+
 
 function App() {
     const [users, setUsers] = useState( [] ) //usersData
