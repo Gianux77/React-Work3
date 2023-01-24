@@ -1,3 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Open Sans,sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+}
+
 li{
     list-style: none;
     border: 1px solid grey;
@@ -18,9 +32,10 @@ form{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: lightgray;
+    background-color: rgb(120, 98, 180);
     width: 25rem;
     height: 25rem;
+    color: rgb(241, 237, 237);
 }
 label {
 font-size: 1.8rem;

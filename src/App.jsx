@@ -1,45 +1,45 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import FormUser from './components/FormUser'
+import ProductsForm from './components/ProductsForm'
 import axios from 'axios'
-import UserList from './components/UsersList'
+import ProductsList from './components/ProductsList'
 
 
 function App() {
-    const [users, setUsers] = useState( [] ) //usersData
-    console.log(users);
+    const [products, setProducts] = useState( [] ) //usersData
+    console.log(products);
     
-    const addUser = (data) =>{
+    const addProducts = (data) =>{
       // console.log("nuevoUsuario", data);
       // setUsers( [...users, data] )
       // console.log(users);
       /* axios.post("url", body)*/
 
-      axios.post("https://users-crud.academlo.tech/users/", data)
+      axios.post("https://products-crud.academlo.tech/products/", data)
       .then(() => getAPIDATA())
       .catch(error => console.error(error))
 }
 
 useEffect(()=>{
-  axios.get("https://users-crud.academlo.tech/users/")
-  .then( resp => setUsers(resp.data))
+  axios.get("https://products-crud.academlo.tech/products/")
+  .then( resp => setProducts(resp.data))
   .catch( error => console.error(error))
 }, [])
 
 const getAPIDATA = () =>{
-  axios.get("https://users-crud.academlo.tech/users/")
-  .then( resp => setUsers(resp.data))
+  axios.get("https://products-crud.academlo.tech/products/")
+  .then( resp => setProducts(resp.data))
   .catch( error => console.error(error))
 }
 
 
 // FUNCION DE ELIMINACION, ELIMINA UN USUARIO
 
-const deleteUser = (userId) => {                              // UserList.jsx >> deleteUser >> App.jsx llamar a deleteUser
+const deleteProducts = (productsId) => {                              // UserList.jsx >> deleteUser >> App.jsx llamar a deleteUser
   
   /* axios.delete("url") */
 
-  axios.delete(`https://users-crud.academlo.tech/users/${userId}/`)
+  axios.delete(`https://products-crud.academlo.tech/products/${productsId}/`)
   .then(() => getAPIDATA())
   .catch(error => console.error(error))
   // console.log(userId);
@@ -51,10 +51,10 @@ const deleteUser = (userId) => {                              // UserList.jsx >>
 }
 //Estados no deben mutarse
 
-const selectUser = (userData) => {
+const selectProducts = (productsData) => {
   // console.log(userData);
   // alert("Usuario seleccionado")
-  setUserDataUpdate(userData)
+  setProductsDataUpdate(productsData)
 }
 
 // INFORMACION DEL USERDATA
@@ -65,13 +65,13 @@ NULL  >>  CUANDO NO HAY NADA SELECCIONADO
 
 */
 
-const[userDataUpdate, setUserDataUpdate] = useState(null)
+const[productsDataUpdate, setProductsDataUpdate] = useState(null)
 
-const updateUser = (editedUser)=>{
+const updateProducts = (editedProducts)=>{
   // alert("Actualizacion!!!")
 // console.log(editedUser);
 
-axios.put(`https://users-crud.academlo.tech/users/${editedUser.id}/`, editedUser)
+axios.put(`https://products-crud.academlo.tech/products/${editedProducts.id}/`, editedProducts)
 .then(() => getAPIDATA())
 .catch(error => console.error(error))
 
@@ -81,7 +81,7 @@ axios.put(`https://users-crud.academlo.tech/users/${editedUser.id}/`, editedUser
 
 // setUsers( [...users] )
 
-setUserDataUpdate(null)
+setProductsDataUpdate(null)
 
 }
 
@@ -91,16 +91,16 @@ setUserDataUpdate(null)
 
 return (
   <div className="App">
-    <FormUser
-    createUserData={ (data) => addUser(data)}
-    userSelectedData ={userDataUpdate}
-    updateUser={updateUser}
+    <ProductsForm
+    createProductsData={ (data) => addProducts(data)}
+    productsSelectedData ={productsDataUpdate}
+    updateProducts={updateProducts}
     /><br />
     <hr /><br />
-    <UserList
-    users={users}
-    deleteUser={deleteUser}
-    selectUser={selectUser}
+    <ProductsList
+    products={products}
+    deleteProducts={deleteProducts}
+    selectProducts={selectProducts}
     />
     </div>
   )
