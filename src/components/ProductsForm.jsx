@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useEffect } from 'react';
 
 
-const ProductsForm =({createProductData, productsSelectedData, updateProducts}) =>{
+const ProductsForm =({createProductData, productSelectedData, updateProduct}) =>{
 
     const { register, handleSubmit, formState: { errors }, reset} = useForm()
     // handleSubmit es la funcion que se ejecutara en el submit
@@ -13,18 +13,18 @@ const ProductsForm =({createProductData, productsSelectedData, updateProducts}) 
         // objeto.propiedad = valor
         //objeto["propiedad"] = valor
         
-        if (productsSelectedData) {
+        if (productSelectedData) {
             //actualizar
             // alert("Actualizando usuario ...");
             // console.log(data);
 
-            updateProducts(data)
+            updateProduct(data)
         }else{
             //crea un nuevo usuario 
             
             // data.id = Date.now()
             console.log(data);
-            createProductData(data);
+            createProductData(data)
             resetForm()
         }
         
@@ -39,61 +39,61 @@ const ProductsForm =({createProductData, productsSelectedData, updateProducts}) 
     })
     */
     
-
+useEffect(() => {
+    if(productSelectedData !== null){
+        reset(productSelectedData)
+        console.log("se selecciono un usuario");
+        }else{
+            resetForm()
+        }
+    },[productSelectedData])
+    
     const resetForm = () => {
         reset(
             {
                 // id: null,          no lo necesitamos ya lo genera el mismo backend
                 name: "",
                 category: "",
-                price:""
+                price:"",
+                isAvailable: false
             }
         )
     }
-    useEffect(() => {
-        if(productsSelectedData !== null){
-            reset(productsSelectedData)
-            console.log("se selecciono un usuario");
-        }else{
-            resetForm()
-        }
-    },[productsSelectedData])
-
-
+    
     return(
         <div>
-            <form onSubmit={handleSubmit( getFormData)}>
+            <form onSubmit={handleSubmit(getFormData)}>
                 <div className="input-wrapper">
-                    <label htmlFor="products-name">Nombre</label><br />
+                    <label htmlFor="product-name">Nombre</label><br />
                     <input 
                     type="text"
-                    id="products-name"
+                    id="product-name"
                     { ...register('name', { required: true})}
                     />
 
                     {  errors.name?.type === "required" && <span>Este input es Requerido</span> }
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="products-category">Categoria</label><br />
+                    <label htmlFor="product-category">Categoria</label><br />
                     <input 
                     type="text"
-                    id="products-category"
+                    id="product-category"
                     { ...register('category', { required: true})}
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="products-price">Precio</label><br />
+                    <label htmlFor="product-price">Precio</label><br />
                     <input 
                     type="number"
-                    id="products-price"
+                    id="product-price"
                     { ...register('price',{ required: true} )}  
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="products-isAvailable">Disponible</label><br />
+                    <label htmlFor="product-isAvailable">Disponible</label><br />
                     <input 
                     type="checkbox"
-                    id="products-isAvailable"
+                    id="product-isAvailable"
                     { ...register('isAvailable')}
                     />
                 </div>

@@ -1,18 +1,18 @@
 
 
-const ProductsList = ({products, deleteProducts, selectProducts}) =>{
+const ProductsList = ({product, deleteProduct, selectProduct}) =>{
 
     return(
         <ul>
             {
-                products?.map( (productsElement, index) => (
+                product?.map( (productElement, index) => (
             
                         <li key={`product-${index}`}>
-                            <h4><span>Nombre: </span>{productsElement.name}</h4>
-                            <h4><span>Categoria: </span>{productsElement.category}</h4>
-                            <h4><span>Precio: </span>${productsElement.price}</h4>
-                            <button onClick={() => deleteProducts(productsElement.id)}>Eliminar</button>
-                            <button onClick={ () => selectProducts(productsElement) }>Editar</button>
+                            <h4><span>Nombre: </span>{productElement.name}</h4>
+                            <h4><span>Categoria: </span>{productElement.category}</h4>
+                            <h4><span>Precio: </span>${productElement.price}</h4>
+                            <button onClick={() => deleteProduct(productElement.id)}>Eliminar</button>
+                            <button onClick={ () => selectProduct(productElement) }>Editar</button>
                         </li>
                 ) )
             }

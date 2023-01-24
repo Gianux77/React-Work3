@@ -6,8 +6,8 @@ import ProductsList from './components/ProductsList'
 
 
 function App() {
-    const [products, setProducts] = useState( [] ) //usersData
-    console.log(products);
+    const [product, setProduct] = useState( [] ) //usersData
+    console.log(product);
     
     const addProducts = (data) =>{
       // console.log("nuevoUsuario", data);
@@ -22,24 +22,24 @@ function App() {
 
 useEffect(()=>{
   axios.get("https://products-crud.academlo.tech/products/")
-  .then( resp => setProducts(resp.data))
+  .then( resp => setProduct(resp.data))
   .catch( error => console.error(error))
 }, [])
 
 const getAPIDATA = () =>{
   axios.get("https://products-crud.academlo.tech/products/")
-  .then( resp => setProducts(resp.data))
+  .then( resp => setProduct(resp.data))
   .catch( error => console.error(error))
 }
 
 
 // FUNCION DE ELIMINACION, ELIMINA UN USUARIO
 
-const deleteProducts = (productsId) => {                              // UserList.jsx >> deleteUser >> App.jsx llamar a deleteUser
+const deleteProduct = (productId) => {                              // UserList.jsx >> deleteUser >> App.jsx llamar a deleteUser
   
   /* axios.delete("url") */
 
-  axios.delete(`https://products-crud.academlo.tech/products/${productsId}/`)
+  axios.delete(`https://products-crud.academlo.tech/products/${productId}/`)
   .then(() => getAPIDATA())
   .catch(error => console.error(error))
   // console.log(userId);
@@ -51,10 +51,10 @@ const deleteProducts = (productsId) => {                              // UserLis
 }
 //Estados no deben mutarse
 
-const selectProducts = (productsData) => {
+const selectProduct = (productData) => {
   // console.log(userData);
   // alert("Usuario seleccionado")
-  setProductsDataUpdate(productsData)
+  setProductDataUpdate(productData)
 }
 
 // INFORMACION DEL USERDATA
@@ -65,9 +65,9 @@ NULL  >>  CUANDO NO HAY NADA SELECCIONADO
 
 */
 
-const[productsDataUpdate, setProductsDataUpdate] = useState(null)
+const[productDataUpdate, setProductDataUpdate] = useState(null)
 
-const updateProducts = (editedProducts)=>{
+const updateProduct = (editedProducts)=>{
   // alert("Actualizacion!!!")
 // console.log(editedUser);
 
@@ -81,7 +81,7 @@ axios.put(`https://products-crud.academlo.tech/products/${editedProducts.id}/`, 
 
 // setUsers( [...users] )
 
-setProductsDataUpdate(null)
+setProductDataUpdate(null)
 
 }
 
@@ -92,15 +92,15 @@ setProductsDataUpdate(null)
 return (
   <div className="App">
     <ProductsForm
-    createProductsData={ (data) => addProducts(data)}
-    productsSelectedData ={productsDataUpdate}
-    updateProducts={updateProducts}
+    createProductData={ (data) => addProducts(data)}
+    productSelectedData ={productDataUpdate}
+    updateProduct={updateProduct}
     /><br />
-    <hr /><br />
+    <br />
     <ProductsList
-    products={products}
-    deleteProducts={deleteProducts}
-    selectProducts={selectProducts}
+    product={product}
+    deleteProduct={deleteProduct}
+    selectProduct={selectProduct}
     />
     </div>
   )
